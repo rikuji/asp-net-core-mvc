@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,8 +10,14 @@ namespace SalesWebMVC.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
+        [Display(Name = "Base Salary")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Salary { get; set; }
         public Departament Departament { get; set; }
         public int DepartamentId { get; set; }
@@ -19,7 +26,6 @@ namespace SalesWebMVC.Models
         {
                 
         }
-
         public Seller(int id, string name, string email, DateTime birthDate, double salary, Departament departament)
         {
             Id = id;
@@ -32,7 +38,6 @@ namespace SalesWebMVC.Models
         public void AddSales(SalesRecord sr)
         {
             Sales.Add(sr);
-
         }
         public void RemoveSales(SalesRecord sr)
         {
